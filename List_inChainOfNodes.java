@@ -8,13 +8,14 @@ public class List_inChainOfNodes{
     /**
       Construct an empty list
      */
-    
+    private Node[] nodeList = new Node[10];
 
     /**
       @return the number of elements in this list
      */
-    // public int size() {
-    // }
+    public int size() {
+		return nodeList.length;
+    }
 
     
      /**
@@ -22,8 +23,11 @@ public class List_inChainOfNodes{
        format:
            # elements [element0,element1,element2,] 
       */
-    // public String toString() {
-    // }
+    public String toString() {
+		String representation = "Size of List: " + this.size() + "\n";
+		representation += nodeList[0];
+		return representation;
+    }
     
     
     /**
@@ -32,6 +36,16 @@ public class List_inChainOfNodes{
       @return true, in keeping with conventions yet to be discussed
      */
      public boolean addAsHead( Object val) {
+		Node nodeVal = new Node(val);
+		int index = this.size() - 1;
+		while (index > 0) {
+			this.nodeList[index] = this.nodeList[index - 1];
+			index --;
+		}
+		if (index == 0) {
+			this.nodeList[index] = nodeVal;
+			nodeVal.setReferenceToNextNode(this.nodeList[1]);
+		}
         return true;
      }
 }
