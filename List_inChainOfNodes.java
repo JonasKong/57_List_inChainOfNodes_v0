@@ -8,7 +8,7 @@ public class List_inChainOfNodes{
     /**
       Construct an empty list
      */
-     
+    
 
     /**
       @return the number of elements in this list
