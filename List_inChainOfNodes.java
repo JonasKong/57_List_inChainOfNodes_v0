@@ -27,6 +27,12 @@ public class List_inChainOfNodes{
 		String representation = "Size of List: " + this.size() + "\n";
 		representation += nodeList[0];
 		return representation;
+		/*for (Node element : nodeList) {
+			if (element.getReferenceToNextNode() != null) {
+				representation += element.getCargoReference();
+			}
+		}
+		return representation;*/
     }
     
     

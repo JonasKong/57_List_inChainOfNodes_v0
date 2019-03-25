@@ -40,7 +40,9 @@ public class Node {
     public Node getReferenceToNextNode() {
 		return this.referenceToNextNode;
     }
-
+    public Object getCargoReference() {
+		return this.cargoReference;
+    }
     public void setReferenceToNextNode( Node referenceToNextNode) {
 		this.referenceToNextNode = referenceToNextNode;
     }
