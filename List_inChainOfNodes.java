@@ -8,13 +8,21 @@ public class List_inChainOfNodes{
     /**
       Construct an empty list
      */
-    private Node[] nodeList = new Node[10];
+    public List_inChainOfNodes(){
+		headReference = new Node(null);
+	}
 
     /**
       @return the number of elements in this list
      */
     public int size() {
-		return nodeList.length;
+		Node current = headReference;
+		int size = 0;
+		while (current.getCargoReference() != null) {
+			size += 1;
+			current = current.getReferenceToNextNode();
+		}
+		return size;
     }
 
     
@@ -24,15 +32,13 @@ public class List_inChainOfNodes{
            # elements [element0,element1,element2,] 
       */
     public String toString() {
+		Node current = headReference;
 		String representation = "Size of List: " + this.size() + "\n";
-		representation += nodeList[0];
-		return representation;
-		/*for (Node element : nodeList) {
-			if (element.getReferenceToNextNode() != null) {
-				representation += element.getCargoReference();
-			}
+		while (current.getCargoReference() != null) {
+			representation += current.getCargoReference();
+			current = current.getReferenceToNextNode();
 		}
-		return representation;*/
+		return representation;
     }
     
     
@@ -43,15 +49,7 @@ public class List_inChainOfNodes{
      */
      public boolean addAsHead( Object val) {
 		Node nodeVal = new Node(val);
-		int index = this.size() - 1;
-		while (index > 0) {
-			this.nodeList[index] = this.nodeList[index - 1];
-			index --;
-		}
-		if (index == 0) {
-			this.nodeList[index] = nodeVal;
-			nodeVal.setReferenceToNextNode(this.nodeList[1]);
-		}
-        return true;
+		nodeVal.setReferenceToNextNode(headReference);
+		return true;
      }
 }
