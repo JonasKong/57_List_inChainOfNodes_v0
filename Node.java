@@ -46,4 +46,7 @@ public class Node {
     public void setReferenceToNextNode( Node referenceToNextNode) {
 		this.referenceToNextNode = referenceToNextNode;
     }
+	public void setCargoReference(Object val) {
+		this.cargoReference = val;
+	}
 }
