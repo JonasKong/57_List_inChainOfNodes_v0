@@ -41,7 +41,19 @@ public class List_inChainOfNodes{
 		return representation;
     }
     
-    
+    /**
+	  Iterate through the list until the desired Node is reached.
+	*/
+	public Node iterateTo(int index){
+		Node current = headReference;
+		 int i = 0;
+		 while ((i < index) && (current.getReferenceToNextNode() != null)) {
+				 current = current.getReferenceToNextNode();
+				 i ++;
+		 }
+		 return current;
+	}
+	
     /**
       Append @value to the head of this list.
 
@@ -50,29 +62,25 @@ public class List_inChainOfNodes{
      public boolean addAsHead( Object val) {
 		Node nodeVal = new Node(val);
 		nodeVal.setReferenceToNextNode(headReference);
+		headReference = nodeVal;
 		return true;
      }
 	 
-	 public boolean set(int index, Object val) {
-		 Node current = this.get(index);
+	 public Object set(int index, Object val) {
+		 Node current = this.iterateTo(index);
+		 Object replaced = current.getCargoReference();
 		 current.setCargoReference(val);
-		 return true;
+		 return replaced;
 	 }
 	 
-	 public Node get(int index) {
-		 Node current = headReference;
-		 int i = 0;
-		 while ((i < index) && (current.getReferenceToNextNode() != null)) {
-				 current = current.getReferenceToNextNode();
-				 i ++;
-		 }
-		 return current;
-		 
+	 public Object get(int index) {
+		 Node current = iterateTo(index);
+		 return current.getCargoReference();
 	 }
 	 
 	 public boolean add(int index, Object val) {
 		 Node nodeVal = new Node(val);
-		 Node current = get(index - 1);
+		 Node current = iterateTo(index - 1);
 		 Node placeholder = current.getReferenceToNextNode();
 		 current.setReferenceToNextNode(nodeVal);
 		 nodeVal.setReferenceToNextNode(placeholder);
@@ -80,7 +88,7 @@ public class List_inChainOfNodes{
 	 }
 	 
 	 public boolean remove(int index) {
-		 Node current = get(index - 1);
+		 Node current = iterateTo(index - 1);
 		 Node placeholder = current.getReferenceToNextNode();
 		 current.setReferenceToNextNode(placeholder.getReferenceToNextNode());
 		 return true;
